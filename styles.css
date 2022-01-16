@@ -2,6 +2,7 @@ blockquote {
   font-style: italic
 }
 
+/*
 #footer {
   position: fixed;
   padding: 5px 5px 0px 5px;
@@ -9,9 +10,9 @@ blockquote {
   width: 100%;
   margin: auto;
   /* Height of the footer*/ 
-  height: 25px;
+  /*height: 25px;
   background: #212121;
   text-align: left;
   color: white;
-}
-        
+} 
+*/        
