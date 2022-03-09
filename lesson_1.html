@@ -9,7 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Giuliano Colosimo, PhD" />
 
+<meta name="date" content="2022-04-08" />
 
 <title>Lesson 1</title>
 
@@ -29,9 +31,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -58,6 +65,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -221,6 +250,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -228,6 +320,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -251,19 +353,12 @@ $(document).ready(function () {
     Home
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="classes.html">
     <span class="fa fa-briefcase"></span>
      
     Classes
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="lesson_1.html">Lesson 1</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -289,15 +384,226 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Lesson 1</h1>
+<h4 class="author">Giuliano Colosimo, PhD</h4>
+<h4 class="date">2022-04-08</h4>
 
 </div>
 
 
+<p>In this first lesson we will:</p>
+<ol style="list-style-type: decimal">
+<li>cover the basics of Animal Tracking;</li>
+<li>set up your computers to be used during the class (and hopefully in your future research);</li>
+<li>get you acquainted with the most commonly used spatial data objects and their features;</li>
+<li>get an overview of some CRSs;</li>
+<li>exercise assignment.</li>
+</ol>
+<div id="animal-tracking" class="section level1">
+<h1>Animal Tracking</h1>
+<p>Animal Tracking is a discipline that allows to gather information about the biology, ecology, behavior and life history of animals starting from data on their position in the natural environment. There are two major requirements for this discipline to be successful:</p>
+<ol style="list-style-type: decimal">
+<li>the capability to uniquely identify individuals, populations or species;</li>
+<li>the availability of position data for that individual (population or species) and a geographic reference system that help minimizing errors when calculating parameters of interest (distance traveled, area covered, etc. etc.).</li>
+</ol>
+<p>The first requirement is fundamental. How can we say anything about a certain individual, population or species if we are not able to identify it (them)? <span class="citation">[<a href="#ref-Costa2015" role="doc-biblioref">1</a>]</span>. The second point is also important as it allows to pinpoint the exact location of the studied organism and, through the use of statistical methods, to relate observations with environmental variables and to perform predictions about the distribution and persistence of individuals <span class="citation">[<a href="#ref-Guisan2000" role="doc-biblioref">2</a>]</span>.</p>
+<div id="tagging-systems" class="section level2">
+<h2>Tagging systems</h2>
+<p>People have been tagging animals (wild and captive) for hundreds of years. A tag is a label that is attached to “something” and provides general information about that something it is attached to!</p>
+<p>An animal tag can be as simple as a piece of metal or plastic with a number carved on it or with a standardized meaning (Figure 1), or a more complex electronic device that not only identifies an individual, but also provides useful information about that animal (Figure 2). Small devices transmitting specific radio frequencies have been, and still are, widely used to track animals. This technology is simple and effective, although it has limitation when it comes to study duration and ease at accessing the data (Figures 3 and 4). Eventually, the data can be organized in to produce really informative (and cool) animations, like the one you can see in Figure 5.</p>
+<div class="figure">
+<img src="figures/1_1_iguana_beads.png" alt="" />
+<p class="caption"><strong>Figure 1:</strong> A male <em>Cyclura carinata</em> with colored bead tags. In this case, each color corresponds to a number and it is therefore possible to identify this individual without catching it. This particular individual is 131 (white, blue, white). Photo credits: Giuliano Colosimo.</p>
+</div>
+<div class="figure">
+<img src="./figures/1_2_iguana_wsn.png" alt="" />
+<p class="caption"><strong>Figure 2:</strong> A male <em>Conolophus marthae</em> with a Wireless Sensor Node (WSN) attached behind its hindlegs. This is a more sofisticated electronic tag that not only allows to identify the individual but also allows to collect important information such as GPS data, temperature and UV light. Photo credits: Giuliano Colosimo.</p>
+</div>
+<div class="figure">
+<img src="./figures/1_3_boa_transmitter.png" alt="" />
+<p class="caption"><strong>Figure 3:</strong> Barrell transmitter implanted in a female TCI Rainbow Boa (<em>Chilabothrus chrysogaster</em>) for a telemetry study. Photo credits: Giuliano Colosimo.</p>
+</div>
+<div class="figure">
+<img src="figures/1_4_reynolds_antenna.png" alt="" />
+<p class="caption"><strong>Figure 4:</strong> Using a radio antenna to pinpoint the location of tagged boas. Photo credits: Giuliano Colosimo.</p>
+</div>
+<div class="figure">
+<img src="animations/1_5_cranes.gif" alt="" />
+<p class="caption"><strong>Figure 5</strong> Migration patterns of cranes (<em>Grus grus</em>) from Sweden. The data was downloaded from <a href="www.movebank.org">www.movebank.org</a>. We will be using this website as resource throughout the course and we will be using different routines in <strong>R</strong> to analyze the data.</p>
+</div>
+<p>For the longest time data were collected by hand and/or transcribed onto an electronic sheet. In animal tracking, and more generally in every discipline involving the use of georeferenced data, computers have become increasingly important. That is why setting up your computers is going to be fundamental if you are interested in working in this discipline and if you want to pass this class :-)</p>
+</div>
+</div>
+<div id="setting-up-your-computer" class="section level1">
+<h1>Setting up your computer</h1>
+<p>To visualize and analyse data and to produce reports on all the activities of this course we will be using <strong>R</strong> and <strong>RStudio</strong>. These are free cross-platform software.</p>
+<ul>
+<li><p>Visit the <a href="https://cran.r-project.org">R</a> page and download the version of the R-software compatible to your OS. Install the software following the instructions.</p></li>
+<li><p>Visit the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> page and download the RStudio Desktop version compatible with your OS. Install the software following the instructions.</p></li>
+</ul>
+<p><strong>NOTE</strong>: <strong>RStudio</strong> is an Integrated Development Environment (IDE) within which it should be easier to organize your <strong>R</strong> workflow. Learning all the specifics of <strong>R</strong> and <strong>RStudio</strong> is beyond the scope of this course and it is a student’s responsibility to learn the basics of these tools. That being said, <em>you can always write me with your questions if something does not work on your computer</em> and I will help troubleshooting potential issues.</p>
+<p>Once software have been installed, open <strong>RStudio</strong>. If everything worked appropriately when you first open <strong>RStudio</strong>, you should see 4 different panes organized in the following way:</p>
+<ul>
+<li><em>top left</em>: the editor where you edit scripts, documents and can run code directly in the console;</li>
+<li><em>bottom left</em>: the R console, where the code is run. You can type code directly into the console OR you can send it to the console by running it from the editor;</li>
+<li><em>top right</em>: your environment/history panes. This is where you can see variables you’ve created and a full history of functions / commands you have run;</li>
+<li><em>bottom right</em>: by default contains several panes including: files/plots/packages/help/viewer. The files pane allows you to explore files on your computer like you would in windows explorer or finder on a mac. The plots tab is where you will see plots that you create.</li>
+</ul>
+<p>In Figure 6 panes have been re-arranged according to my personal likes. Feel free to do the same with your <strong>RStudio</strong> using the <em>Preferences</em>.</p>
+<div class="figure">
+<img src="figures/1_6_r_rstudio.png" alt="" />
+<p class="caption"><strong>Figure 6:</strong> Screen shot of what you should see at the end of the installation of all the software. Note that colors and panes’ arrangement is likely going to be different on your computer. You can change many of the aspects parameters in <strong>RStudio</strong> and you can arrange colors and panes in the way that works best for you.</p>
+</div>
+<p>Learning how to use <strong>R</strong> is beyond the scope of this course. Suffice to say that there are thousands of available libraries (aka, <em>packages</em>) that can be used to perform many different calculations. As we proceed we will be installing all the libraries we need and if you find some library that may be of interest we will find the time to review and see how it can be used.</p>
+<div class="figure">
+<img src="figures/1_7_package_downloads.png" alt="" />
+<p class="caption"><strong>Figure 7:</strong> This graph shows how the interest in spatial analysis increased in the last ten years. The package <strong>sf</strong> <span class="citation">[<a href="#ref-Pebesma2018" role="doc-biblioref">3</a>]</span> has received a lot of attention and it has become one of the new standard on how to use and treat certain types of spatial data.</p>
+</div>
+</div>
+<div id="the-basics-of-spatial-data" class="section level1">
+<h1>The basics of spatial data</h1>
+<p>The main characteristic of a spatial object is that it has coordinates attached to it. Having coordinates means that we have a way to index that object on a map. We will touch on Coordinate Reference Systems (CRS) here, but first we will focus on the most common and widely used types of spatial data.</p>
+<div id="vector" class="section level2">
+<h2>Vector</h2>
+<p><strong>NOTE:</strong> the world vector is used in <strong>R</strong> to also indicate a specific type of data format, and it is easy to get be confused. Make sure to understand what a vector is when we talk about it in a spatial context!</p>
+<p>We recognize three main types of vectors:</p>
+<ol style="list-style-type: decimal">
+<li>Points</li>
+<li>Lines</li>
+<li>Polygons</li>
+</ol>
+<div id="points" class="section level3">
+<h3>Points</h3>
+<ul>
+<li>Points, generally used for single site locations (cities, field observations, buildings)</li>
+</ul>
+<div class="figure">
+<img src="lesson_1_files/figure-html/points_1-1.png" alt="**Figure 8:** An example of three points on a map. The table below has some additional information on what those points are." width="672" />
+<p class="caption">
+<strong>Figure 8:</strong> An example of three points on a map. The table below has some additional information on what those points are.
+</p>
+</div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Point_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Characteristics"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Vegetation","3":"Shrubs"},{"1":"2","2":"Vegetation","3":"Grass"},{"1":"3","2":"Vegetation","3":"Forest"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="lines" class="section level3">
+<h3>Lines</h3>
+<ul>
+<li>Lines, generally used for rivers or streets.</li>
+</ul>
+<div class="figure">
+<img src="lesson_1_files/figure-html/lines_1-1.png" alt="**Figure 9:** Two lines representing a road and a river , respectively. Information about the lines is presented in the table below the figure." width="672" />
+<p class="caption">
+<strong>Figure 9:</strong> Two lines representing a road and a river , respectively. Information about the lines is presented in the table below the figure.
+</p>
+</div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Line_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Length"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Features"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"Road","3":"15 km","4":"straight"},{"1":"B","2":"River","3":"20 km","4":"bends"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="polygons" class="section level3">
+<h3>Polygons</h3>
+<ul>
+<li>Polygons, generally used to specify home-ranges or areas of particular interest.</li>
+</ul>
+<div class="figure">
+<img src="lesson_1_files/figure-html/polygons-1.png" alt="**Figure 10:** A polygon representing a patch of forest. information about this polygon is presented in the table right below the figure." width="672" />
+<p class="caption">
+<strong>Figure 10:</strong> A polygon representing a patch of forest. information about this polygon is presented in the table right below the figure.
+</p>
+</div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Polygon_ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Area"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Features"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"Forest","3":"25 hectares","4":"private land"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Vector data are widely used. The table below shows all drivers available based on the installation of <a href="https://gdal.org/index.html">GDAL</a> (GDAL is a translator library for raster and vector geospatial data formats).</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["long_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["write"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["copy"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["is_raster"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["is_vector"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["vsi"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"ESRIC","2":"Esri Compact Cache","3":"FALSE","4":"FALSE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"ESRIC"},{"1":"PCIDSK","2":"PCIDSK Database File","3":"TRUE","4":"FALSE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"PCIDSK"},{"1":"netCDF","2":"Network Common Data Format","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"FALSE","_rn_":"netCDF"},{"1":"PDS4","2":"NASA Planetary Data System 4","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"PDS4"},{"1":"VICAR","2":"MIPL VICAR file","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"VICAR"},{"1":"JP2OpenJPEG","2":"JPEG-2000 driver based on OpenJPEG library","3":"FALSE","4":"TRUE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"JP2OpenJPEG"},{"1":"PDF","2":"Geospatial PDF","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"FALSE","_rn_":"PDF"},{"1":"MBTiles","2":"MBTiles","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"MBTiles"},{"1":"BAG","2":"Bathymetry Attributed Grid","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"BAG"},{"1":"EEDA","2":"Earth Engine Data API","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"EEDA"},{"1":"OGCAPI","2":"OGCAPI","3":"FALSE","4":"FALSE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"OGCAPI"},{"1":"ESRI Shapefile","2":"ESRI Shapefile","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"ESRI Shapefile"},{"1":"MapInfo File","2":"MapInfo File","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"MapInfo File"},{"1":"UK .NTF","2":"UK .NTF","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"UK .NTF"},{"1":"LVBAG","2":"Kadaster LV BAG Extract 2.0","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"LVBAG"},{"1":"OGR_SDTS","2":"SDTS","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OGR_SDTS"},{"1":"S57","2":"IHO S-57 (ENC)","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"S57"},{"1":"DGN","2":"Microstation DGN","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"DGN"},{"1":"OGR_VRT","2":"VRT - Virtual Datasource","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OGR_VRT"},{"1":"REC","2":"EPIInfo .REC","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"REC"},{"1":"Memory","2":"Memory","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"Memory"},{"1":"BNA","2":"Atlas BNA","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"BNA"},{"1":"CSV","2":"Comma Separated Value (.csv)","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"CSV"},{"1":"GML","2":"Geography Markup Language (GML)","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"GML"},{"1":"GPX","2":"GPX","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"GPX"},{"1":"KML","2":"Keyhole Markup Language (KML)","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"KML"},{"1":"GeoJSON","2":"GeoJSON","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"GeoJSON"},{"1":"GeoJSONSeq","2":"GeoJSON Sequence","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"GeoJSONSeq"},{"1":"ESRIJSON","2":"ESRIJSON","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"ESRIJSON"},{"1":"TopoJSON","2":"TopoJSON","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"TopoJSON"},{"1":"OGR_GMT","2":"GMT ASCII Vectors (.gmt)","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OGR_GMT"},{"1":"GPKG","2":"GeoPackage","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"GPKG"},{"1":"SQLite","2":"SQLite / Spatialite","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"SQLite"},{"1":"WAsP","2":"WAsP .map format","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"WAsP"},{"1":"PostgreSQL","2":"PostgreSQL/PostGIS","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"PostgreSQL"},{"1":"OpenFileGDB","2":"ESRI FileGDB","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OpenFileGDB"},{"1":"XPlane","2":"X-Plane/Flightgear aeronautical data","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"XPlane"},{"1":"DXF","2":"AutoCAD DXF","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"DXF"},{"1":"CAD","2":"AutoCAD Driver","3":"FALSE","4":"FALSE","5":"TRUE","6":"TRUE","7":"TRUE","_rn_":"CAD"},{"1":"FlatGeobuf","2":"FlatGeobuf","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"FlatGeobuf"},{"1":"Geoconcept","2":"Geoconcept","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"Geoconcept"},{"1":"GeoRSS","2":"GeoRSS","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"GeoRSS"},{"1":"GPSTrackMaker","2":"GPSTrackMaker","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"GPSTrackMaker"},{"1":"VFK","2":"Czech Cadastral Exchange Data Format","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"VFK"},{"1":"PGDUMP","2":"PostgreSQL SQL dump","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"PGDUMP"},{"1":"OSM","2":"OpenStreetMap XML and PBF","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OSM"},{"1":"GPSBabel","2":"GPSBabel","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"GPSBabel"},{"1":"SUA","2":"Tim Newport-Peace's Special Use Airspace Format","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"SUA"},{"1":"OpenAir","2":"OpenAir","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OpenAir"},{"1":"OGR_PDS","2":"Planetary Data Systems TABLE","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"OGR_PDS"},{"1":"WFS","2":"OGC WFS (Web Feature Service)","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"WFS"},{"1":"OAPIF","2":"OGC API - Features","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"OAPIF"},{"1":"HTF","2":"Hydrographic Transfer Vector","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"HTF"},{"1":"AeronavFAA","2":"Aeronav FAA","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"AeronavFAA"},{"1":"EDIGEO","2":"French EDIGEO exchange format","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"EDIGEO"},{"1":"SVG","2":"Scalable Vector Graphics","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"SVG"},{"1":"CouchDB","2":"CouchDB / GeoCouch","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"CouchDB"},{"1":"Cloudant","2":"Cloudant / CouchDB","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"Cloudant"},{"1":"Idrisi","2":"Idrisi Vector (.vct)","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"Idrisi"},{"1":"ARCGEN","2":"Arc/Info Generate","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"ARCGEN"},{"1":"SEGUKOOA","2":"SEG-P1 / UKOOA P1/90","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"SEGUKOOA"},{"1":"SEGY","2":"SEG-Y","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"SEGY"},{"1":"XLS","2":"MS Excel format","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"XLS"},{"1":"ODS","2":"Open Document/ LibreOffice / OpenOffice Spreadsheet","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"ODS"},{"1":"XLSX","2":"MS Office Open XML spreadsheet","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"XLSX"},{"1":"Elasticsearch","2":"Elastic Search","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"Elasticsearch"},{"1":"Carto","2":"Carto","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"Carto"},{"1":"AmigoCloud","2":"AmigoCloud","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"AmigoCloud"},{"1":"SXF","2":"Storage and eXchange Format","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"SXF"},{"1":"Selafin","2":"Selafin","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"Selafin"},{"1":"JML","2":"OpenJUMP JML","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"JML"},{"1":"PLSCENES","2":"Planet Labs Scenes API","3":"FALSE","4":"FALSE","5":"TRUE","6":"TRUE","7":"FALSE","_rn_":"PLSCENES"},{"1":"CSW","2":"OGC CSW (Catalog  Service for the Web)","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"FALSE","_rn_":"CSW"},{"1":"VDV","2":"VDV-451/VDV-452/INTREST Data Format","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"VDV"},{"1":"MVT","2":"Mapbox Vector Tiles","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"MVT"},{"1":"NGW","2":"NextGIS Web","3":"TRUE","4":"TRUE","5":"TRUE","6":"TRUE","7":"FALSE","_rn_":"NGW"},{"1":"MapML","2":"MapML","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"MapML"},{"1":"TIGER","2":"U.S. Census TIGER/Line","3":"TRUE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"TIGER"},{"1":"AVCBin","2":"Arc/Info Binary Coverage","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"AVCBin"},{"1":"AVCE00","2":"Arc/Info E00 (ASCII) Coverage","3":"FALSE","4":"FALSE","5":"FALSE","6":"TRUE","7":"TRUE","_rn_":"AVCE00"},{"1":"HTTP","2":"HTTP Fetching Wrapper","3":"FALSE","4":"FALSE","5":"TRUE","6":"TRUE","7":"FALSE","_rn_":"HTTP"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Recently vector data have been represented using a specific class of data type known as <em>Simple Feature</em>.</p>
+<p><em>Simple Feature</em> is an open standard developed and endorsed by the <a href="https://www.ogc.org">Open Geospatial Consortium (OGC)</a>. The official definition from their documentation is the following: <em>The simple feature geometry object model is Distributed Computing Platform neutral and uses UML (Unified Modeling Language) notation. The base Geometry class has subclasses for Point, Curve, Surface and GeometryCollection. Each geometric object is associated with a Spatial Reference System, which describes the coordinate space in which the geometric object is defined</em>.</p>
+<p>In <strong>R</strong> <em>Simple Features</em> are handled by the <strong>sf</strong> package <span class="citation">[<a href="#ref-Pebesma2018" role="doc-biblioref">3</a>]</span>. This is the successor of the <strong>sp</strong> <span class="citation">[<a href="#ref-Pebesma2005" role="doc-biblioref">4</a>]</span> package based on the OGC standard Simple Features. As its successor, <strong>sf</strong> combines the functionality of <strong>sp</strong> with those of two other packages for the analysis of geospatial data: <strong>rgeos</strong> <span class="citation">[<a href="#ref-Bivand2021" role="doc-biblioref">5</a>]</span> and <strong>rgdal</strong> <span class="citation">[<a href="#ref-Bivand2021b" role="doc-biblioref">6</a>]</span>. The <strong>sf</strong> package handles additional vector data types (e.g. polygon and multipolygon are two separate classes), allows for easier data processing, and supports spatial databases such as PostGIS. The official web-page for this package with various additional information is available <a href="https://r-spatial.github.io/sf/">here</a>.</p>
+<p>What does an object of class sf look like?</p>
+<pre class="r"><code>library(spData)</code></pre>
+<pre class="r"><code>world
+
+Simple feature collection with 177 features and 10 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -89.9 xmax: 180 ymax: 83.64513
+Geodetic CRS:  WGS 84</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["iso_a2"],"name":[1],"type":["chr"],"align":["left"]},{"label":["name_long"],"name":[2],"type":["chr"],"align":["left"]},{"label":["continent"],"name":[3],"type":["chr"],"align":["left"]},{"label":["region_un"],"name":[4],"type":["chr"],"align":["left"]},{"label":["subregion"],"name":[5],"type":["chr"],"align":["left"]},{"label":["type"],"name":[6],"type":["chr"],"align":["left"]},{"label":["area_km2"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["lifeExp"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gdpPercap"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["geom"],"name":[11],"type":["s_MULTIP"],"align":["right"]}],"data":[{"1":"FJ","2":"Fiji","3":"Oceania","4":"Oceania","5":"Melanesia","6":"Sovereign country","7":"19289.971","8":"885806","9":"69.96000","10":"8222.2538","11":"<s_MULTIP>","_rn_":"1"},{"1":"TZ","2":"Tanzania","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"932745.792","8":"52234869","9":"64.16300","10":"2402.0994","11":"<s_MULTIP>","_rn_":"2"},{"1":"EH","2":"Western Sahara","3":"Africa","4":"Africa","5":"Northern Africa","6":"Indeterminate","7":"96270.601","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"3"},{"1":"CA","2":"Canada","3":"North America","4":"Americas","5":"Northern America","6":"Sovereign country","7":"10036042.977","8":"35535348","9":"81.95305","10":"43079.1425","11":"<s_MULTIP>","_rn_":"4"},{"1":"US","2":"United States","3":"North America","4":"Americas","5":"Northern America","6":"Country","7":"9510743.745","8":"318622525","9":"78.84146","10":"51921.9846","11":"<s_MULTIP>","_rn_":"5"},{"1":"KZ","2":"Kazakhstan","3":"Asia","4":"Asia","5":"Central Asia","6":"Sovereign country","7":"2729810.513","8":"17288285","9":"71.62000","10":"23587.3375","11":"<s_MULTIP>","_rn_":"6"},{"1":"UZ","2":"Uzbekistan","3":"Asia","4":"Asia","5":"Central Asia","6":"Sovereign country","7":"461410.258","8":"30757700","9":"71.03900","10":"5370.8658","11":"<s_MULTIP>","_rn_":"7"},{"1":"PG","2":"Papua New Guinea","3":"Oceania","4":"Oceania","5":"Melanesia","6":"Sovereign country","7":"464520.072","8":"7755785","9":"65.23000","10":"3709.0816","11":"<s_MULTIP>","_rn_":"8"},{"1":"ID","2":"Indonesia","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"1819251.329","8":"255131116","9":"68.85600","10":"10003.0890","11":"<s_MULTIP>","_rn_":"9"},{"1":"AR","2":"Argentina","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"2784468.589","8":"42981515","9":"76.25200","10":"18797.5479","11":"<s_MULTIP>","_rn_":"10"},{"1":"CL","2":"Chile","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"814844.220","8":"17613798","9":"79.11700","10":"22195.2744","11":"<s_MULTIP>","_rn_":"11"},{"1":"CD","2":"Democratic Republic of the Congo","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"2323492.477","8":"73722860","9":"58.78200","10":"785.3473","11":"<s_MULTIP>","_rn_":"12"},{"1":"SO","2":"Somalia","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"484332.793","8":"13513125","9":"55.46700","10":"NA","11":"<s_MULTIP>","_rn_":"13"},{"1":"KE","2":"Kenya","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"590836.914","8":"46024250","9":"66.24200","10":"2753.2361","11":"<s_MULTIP>","_rn_":"14"},{"1":"SD","2":"Sudan","3":"Africa","4":"Africa","5":"Northern Africa","6":"Sovereign country","7":"1850885.565","8":"37737913","9":"64.00200","10":"4188.3348","11":"<s_MULTIP>","_rn_":"15"},{"1":"TD","2":"Chad","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"1271694.598","8":"13569438","9":"52.20400","10":"2076.6500","11":"<s_MULTIP>","_rn_":"16"},{"1":"HT","2":"Haiti","3":"North America","4":"Americas","5":"Caribbean","6":"Sovereign country","7":"28540.546","8":"10572466","9":"62.75700","10":"1652.8548","11":"<s_MULTIP>","_rn_":"17"},{"1":"DO","2":"Dominican Republic","3":"North America","4":"Americas","5":"Caribbean","6":"Sovereign country","7":"48157.874","8":"10405844","9":"73.48300","10":"12663.0422","11":"<s_MULTIP>","_rn_":"18"},{"1":"RU","2":"Russian Federation","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"17018507.409","8":"143819666","9":"70.74366","10":"25284.5862","11":"<s_MULTIP>","_rn_":"19"},{"1":"BS","2":"Bahamas","3":"North America","4":"Americas","5":"Caribbean","6":"Sovereign country","7":"15584.791","8":"382169","9":"75.37900","10":"28456.8165","11":"<s_MULTIP>","_rn_":"20"},{"1":"FK","2":"Falkland Islands","3":"South America","4":"Americas","5":"South America","6":"Dependency","7":"16363.799","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"21"},{"1":"NO","2":"Norway","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"397994.629","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"22"},{"1":"GL","2":"Greenland","3":"North America","4":"Americas","5":"Northern America","6":"Country","7":"2206644.440","8":"56295","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"23"},{"1":"TF","2":"French Southern and Antarctic Lands","3":"Seven seas (open ocean)","4":"Seven seas (open ocean)","5":"Seven seas (open ocean)","6":"Dependency","7":"11602.572","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"24"},{"1":"TL","2":"Timor-Leste","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"14714.931","8":"1212814","9":"68.28500","10":"6262.9055","11":"<s_MULTIP>","_rn_":"25"},{"1":"ZA","2":"South Africa","3":"Africa","4":"Africa","5":"Southern Africa","6":"Sovereign country","7":"1216400.831","8":"54539571","9":"60.99300","10":"12389.7147","11":"<s_MULTIP>","_rn_":"26"},{"1":"LS","2":"Lesotho","3":"Africa","4":"Africa","5":"Southern Africa","6":"Sovereign country","7":"27505.655","8":"2145785","9":"53.26800","10":"2677.1981","11":"<s_MULTIP>","_rn_":"27"},{"1":"MX","2":"Mexico","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"1969480.307","8":"124221600","9":"76.75300","10":"16622.5970","11":"<s_MULTIP>","_rn_":"28"},{"1":"UY","2":"Uruguay","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"176853.636","8":"3419546","9":"77.19000","10":"19827.5650","11":"<s_MULTIP>","_rn_":"29"},{"1":"BR","2":"Brazil","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"8508557.092","8":"204213133","9":"75.04200","10":"15374.2615","11":"<s_MULTIP>","_rn_":"30"},{"1":"BO","2":"Bolivia","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"1085269.596","8":"10562159","9":"68.35700","10":"6324.8273","11":"<s_MULTIP>","_rn_":"31"},{"1":"PE","2":"Peru","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"1309699.636","8":"30973354","9":"74.51800","10":"11547.8342","11":"<s_MULTIP>","_rn_":"32"},{"1":"CO","2":"Colombia","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"1151882.926","8":"47791911","9":"74.02200","10":"12715.9674","11":"<s_MULTIP>","_rn_":"33"},{"1":"PA","2":"Panama","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"75265.449","8":"3903986","9":"77.61000","10":"20017.9944","11":"<s_MULTIP>","_rn_":"34"},{"1":"CR","2":"Costa Rica","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"53832.136","8":"4757575","9":"79.44000","10":"14372.4008","11":"<s_MULTIP>","_rn_":"35"},{"1":"NI","2":"Nicaragua","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"129540.212","8":"6013997","9":"74.88400","10":"4784.8305","11":"<s_MULTIP>","_rn_":"36"},{"1":"HN","2":"Honduras","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"113789.775","8":"8809216","9":"73.18100","10":"4231.3251","11":"<s_MULTIP>","_rn_":"37"},{"1":"SV","2":"El Salvador","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"20893.340","8":"6281189","9":"73.01500","10":"6890.7232","11":"<s_MULTIP>","_rn_":"38"},{"1":"GT","2":"Guatemala","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"109459.049","8":"15923559","9":"72.86900","10":"7147.4292","11":"<s_MULTIP>","_rn_":"39"},{"1":"BZ","2":"Belize","3":"North America","4":"Americas","5":"Central America","6":"Sovereign country","7":"22045.451","8":"351694","9":"70.02700","10":"7999.5737","11":"<s_MULTIP>","_rn_":"40"},{"1":"VE","2":"Venezuela","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"908499.070","8":"30738378","9":"74.19600","10":"16745.0220","11":"<s_MULTIP>","_rn_":"41"},{"1":"GY","2":"Guyana","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"209801.857","8":"763393","9":"66.42500","10":"6906.0123","11":"<s_MULTIP>","_rn_":"42"},{"1":"SR","2":"Suriname","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"144268.723","8":"547928","9":"71.13800","10":"15306.6924","11":"<s_MULTIP>","_rn_":"43"},{"1":"FR","2":"France","3":"Europe","4":"Europe","5":"Western Europe","6":"Country","7":"644847.882","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"44"},{"1":"EC","2":"Ecuador","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"250747.110","8":"15903112","9":"75.87900","10":"10901.4186","11":"<s_MULTIP>","_rn_":"45"},{"1":"PR","2":"Puerto Rico","3":"North America","4":"Americas","5":"Caribbean","6":"Dependency","7":"9224.663","8":"3534874","9":"79.39012","10":"35066.0464","11":"<s_MULTIP>","_rn_":"46"},{"1":"JM","2":"Jamaica","3":"North America","4":"Americas","5":"Caribbean","6":"Sovereign country","7":"12460.587","8":"2862087","9":"75.68900","10":"8051.2440","11":"<s_MULTIP>","_rn_":"47"},{"1":"CU","2":"Cuba","3":"North America","4":"Americas","5":"Caribbean","6":"Sovereign country","7":"114866.218","8":"11439767","9":"79.41500","10":"NA","11":"<s_MULTIP>","_rn_":"48"},{"1":"ZW","2":"Zimbabwe","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"376328.489","8":"15411675","9":"59.36000","10":"1925.1387","11":"<s_MULTIP>","_rn_":"49"},{"1":"BW","2":"Botswana","3":"Africa","4":"Africa","5":"Southern Africa","6":"Sovereign country","7":"591912.017","8":"2168573","9":"64.78000","10":"15914.6702","11":"<s_MULTIP>","_rn_":"50"},{"1":"__NA__","2":"Namibia","3":"Africa","4":"Africa","5":"Southern Africa","6":"Sovereign country","7":"824886.561","8":"2370992","9":"62.98100","10":"9617.3970","11":"<s_MULTIP>","_rn_":"51"},{"1":"SN","2":"Senegal","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"194390.439","8":"14546111","9":"66.37600","10":"2218.5519","11":"<s_MULTIP>","_rn_":"52"},{"1":"ML","2":"Mali","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"1235561.373","8":"16962846","9":"57.00700","10":"1865.1606","11":"<s_MULTIP>","_rn_":"53"},{"1":"MR","2":"Mauritania","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"1054107.194","8":"4063920","9":"62.90700","10":"3655.3885","11":"<s_MULTIP>","_rn_":"54"},{"1":"BJ","2":"Benin","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"116998.713","8":"10286712","9":"60.37300","10":"2001.0773","11":"<s_MULTIP>","_rn_":"55"},{"1":"NE","2":"Niger","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"1182269.648","8":"19148219","9":"59.22800","10":"904.4567","11":"<s_MULTIP>","_rn_":"56"},{"1":"NG","2":"Nigeria","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"905071.739","8":"176460502","9":"52.54900","10":"5671.9006","11":"<s_MULTIP>","_rn_":"57"},{"1":"CM","2":"Cameroon","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"460324.702","8":"22239904","9":"57.11100","10":"3196.3615","11":"<s_MULTIP>","_rn_":"58"},{"1":"TG","2":"Togo","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"60966.962","8":"7228915","9":"59.60100","10":"1315.3403","11":"<s_MULTIP>","_rn_":"59"},{"1":"GH","2":"Ghana","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"243473.120","8":"26962563","9":"62.15400","10":"3868.6009","11":"<s_MULTIP>","_rn_":"60"},{"1":"CI","2":"Côte d'Ivoire","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"329825.951","8":"22531350","9":"52.52000","10":"3054.5349","11":"<s_MULTIP>","_rn_":"61"},{"1":"GN","2":"Guinea","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"239565.079","8":"11805509","9":"58.84600","10":"1734.7367","11":"<s_MULTIP>","_rn_":"62"},{"1":"GW","2":"Guinea-Bissau","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"36191.886","8":"1725744","9":"56.59800","10":"1398.2548","11":"<s_MULTIP>","_rn_":"63"},{"1":"LR","2":"Liberia","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"98206.783","8":"4390737","9":"61.52700","10":"804.7199","11":"<s_MULTIP>","_rn_":"64"},{"1":"SL","2":"Sierra Leone","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"75980.331","8":"7079162","9":"50.95100","10":"1692.1421","11":"<s_MULTIP>","_rn_":"65"},{"1":"BF","2":"Burkina Faso","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"271593.672","8":"17585977","9":"59.45700","10":"1582.3337","11":"<s_MULTIP>","_rn_":"66"},{"1":"CF","2":"Central African Republic","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"621860.349","8":"4515392","9":"50.62100","10":"597.1352","11":"<s_MULTIP>","_rn_":"67"},{"1":"CG","2":"Republic of the Congo","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"339681.855","8":"4871101","9":"63.53600","10":"5538.0529","11":"<s_MULTIP>","_rn_":"68"},{"1":"GA","2":"Gabon","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"269475.798","8":"1875713","9":"65.21100","10":"16678.6381","11":"<s_MULTIP>","_rn_":"69"},{"1":"GQ","2":"Equatorial Guinea","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"27120.575","8":"1129424","9":"57.18000","10":"31542.5108","11":"<s_MULTIP>","_rn_":"70"},{"1":"ZM","2":"Zambia","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"751921.215","8":"15620974","9":"60.77500","10":"3632.5038","11":"<s_MULTIP>","_rn_":"71"},{"1":"MW","2":"Malawi","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"111197.018","8":"17068838","9":"61.93200","10":"1090.3672","11":"<s_MULTIP>","_rn_":"72"},{"1":"MZ","2":"Mozambique","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"810994.757","8":"27212382","9":"57.09900","10":"1079.8239","11":"<s_MULTIP>","_rn_":"73"},{"1":"SZ","2":"eSwatini","3":"Africa","4":"Africa","5":"Southern Africa","6":"Sovereign country","7":"18118.634","8":"1295097","9":"56.28700","10":"7870.9707","11":"<s_MULTIP>","_rn_":"74"},{"1":"AO","2":"Angola","3":"Africa","4":"Africa","5":"Middle Africa","6":"Sovereign country","7":"1245463.748","8":"26920466","9":"60.85800","10":"6257.1529","11":"<s_MULTIP>","_rn_":"75"},{"1":"BI","2":"Burundi","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"26238.948","8":"9891790","9":"56.68800","10":"803.1728","11":"<s_MULTIP>","_rn_":"76"},{"1":"IL","2":"Israel","3":"Asia","4":"Asia","5":"Western Asia","6":"Country","7":"22991.166","8":"8215700","9":"82.15366","10":"31702.0835","11":"<s_MULTIP>","_rn_":"77"},{"1":"LB","2":"Lebanon","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"10099.003","8":"5603279","9":"79.23100","10":"13831.3752","11":"<s_MULTIP>","_rn_":"78"},{"1":"MG","2":"Madagascar","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"589382.827","8":"23589801","9":"65.13300","10":"1372.0210","11":"<s_MULTIP>","_rn_":"79"},{"1":"PS","2":"Palestine","3":"Asia","4":"Asia","5":"Western Asia","6":"Disputed","7":"5037.104","8":"4294682","9":"73.12600","10":"4319.5283","11":"<s_MULTIP>","_rn_":"80"},{"1":"GM","2":"The Gambia","3":"Africa","4":"Africa","5":"Western Africa","6":"Sovereign country","7":"14031.284","8":"1917852","9":"60.70700","10":"1550.2184","11":"<s_MULTIP>","_rn_":"81"},{"1":"TN","2":"Tunisia","3":"Africa","4":"Africa","5":"Northern Africa","6":"Sovereign country","7":"156237.322","8":"11143908","9":"75.33500","10":"10767.0277","11":"<s_MULTIP>","_rn_":"82"},{"1":"DZ","2":"Algeria","3":"Africa","4":"Africa","5":"Northern Africa","6":"Sovereign country","7":"2315916.658","8":"39113313","9":"75.64100","10":"13483.3379","11":"<s_MULTIP>","_rn_":"83"},{"1":"JO","2":"Jordan","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"89207.137","8":"8809306","9":"74.03400","10":"8622.1855","11":"<s_MULTIP>","_rn_":"84"},{"1":"AE","2":"United Arab Emirates","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"79880.738","8":"9070867","9":"76.94800","10":"63943.1858","11":"<s_MULTIP>","_rn_":"85"},{"1":"QA","2":"Qatar","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"11327.855","8":"2374419","9":"77.88800","10":"120860.0676","11":"<s_MULTIP>","_rn_":"86"},{"1":"KW","2":"Kuwait","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"16652.120","8":"3782450","9":"74.45800","10":"70832.3684","11":"<s_MULTIP>","_rn_":"87"},{"1":"IQ","2":"Iraq","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"436965.034","8":"35006080","9":"69.45800","10":"14838.3829","11":"<s_MULTIP>","_rn_":"88"},{"1":"OM","2":"Oman","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"309302.034","8":"3960925","9":"76.57800","10":"40365.2733","11":"<s_MULTIP>","_rn_":"89"},{"1":"VU","2":"Vanuatu","3":"Oceania","4":"Oceania","5":"Melanesia","6":"Sovereign country","7":"7490.040","8":"258850","9":"71.70900","10":"2892.3416","11":"<s_MULTIP>","_rn_":"90"},{"1":"KH","2":"Cambodia","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"182235.978","8":"15270790","9":"68.25100","10":"3124.3193","11":"<s_MULTIP>","_rn_":"91"},{"1":"TH","2":"Thailand","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"510125.570","8":"68416772","9":"74.89500","10":"14857.2029","11":"<s_MULTIP>","_rn_":"92"},{"1":"LA","2":"Lao PDR","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"229080.422","8":"6576397","9":"65.97500","10":"5436.4826","11":"<s_MULTIP>","_rn_":"93"},{"1":"MM","2":"Myanmar","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"679573.994","8":"51924182","9":"66.28500","10":"4770.0121","11":"<s_MULTIP>","_rn_":"94"},{"1":"VN","2":"Vietnam","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"335990.802","8":"92544915","9":"75.85500","10":"5264.8281","11":"<s_MULTIP>","_rn_":"95"},{"1":"KP","2":"Dem. Rep. Korea","3":"Asia","4":"Asia","5":"Eastern Asia","6":"Sovereign country","7":"125679.216","8":"25116363","9":"71.17900","10":"NA","11":"<s_MULTIP>","_rn_":"96"},{"1":"KR","2":"Republic of Korea","3":"Asia","4":"Asia","5":"Eastern Asia","6":"Sovereign country","7":"99044.367","8":"50746659","9":"81.72195","10":"33425.6896","11":"<s_MULTIP>","_rn_":"97"},{"1":"MN","2":"Mongolia","3":"Asia","4":"Asia","5":"Eastern Asia","6":"Sovereign country","7":"1544322.150","8":"2923896","9":"68.84700","10":"11348.6473","11":"<s_MULTIP>","_rn_":"98"},{"1":"IN","2":"India","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"3142892.098","8":"1293859294","9":"68.02100","10":"5385.1418","11":"<s_MULTIP>","_rn_":"99"},{"1":"BD","2":"Bangladesh","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"133782.141","8":"159405279","9":"71.80300","10":"2973.0416","11":"<s_MULTIP>","_rn_":"100"},{"1":"BT","2":"Bhutan","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"39377.402","8":"776448","9":"69.43000","10":"7366.4241","11":"<s_MULTIP>","_rn_":"101"},{"1":"NP","2":"Nepal","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"150706.871","8":"28323241","9":"69.51100","10":"2266.1843","11":"<s_MULTIP>","_rn_":"102"},{"1":"PK","2":"Pakistan","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"874119.998","8":"185546257","9":"66.13900","10":"4576.2270","11":"<s_MULTIP>","_rn_":"103"},{"1":"AF","2":"Afghanistan","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"652270.070","8":"32758020","9":"62.89500","10":"1838.9602","11":"<s_MULTIP>","_rn_":"104"},{"1":"TJ","2":"Tajikistan","3":"Asia","4":"Asia","5":"Central Asia","6":"Sovereign country","7":"138111.759","8":"8362745","9":"70.69000","10":"2546.5005","11":"<s_MULTIP>","_rn_":"105"},{"1":"KG","2":"Kyrgyzstan","3":"Asia","4":"Asia","5":"Central Asia","6":"Sovereign country","7":"195874.658","8":"5835500","9":"70.40244","10":"3181.6422","11":"<s_MULTIP>","_rn_":"106"},{"1":"TM","2":"Turkmenistan","3":"Asia","4":"Asia","5":"Central Asia","6":"Sovereign country","7":"480809.522","8":"5466241","9":"67.55200","10":"14332.3658","11":"<s_MULTIP>","_rn_":"107"},{"1":"IR","2":"Iran","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"1617559.040","8":"78411092","9":"75.46600","10":"16924.2007","11":"<s_MULTIP>","_rn_":"108"},{"1":"SY","2":"Syria","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"185004.125","8":"19203090","9":"69.81700","10":"NA","11":"<s_MULTIP>","_rn_":"109"},{"1":"AM","2":"Armenia","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"28656.601","8":"2906220","9":"74.25500","10":"7971.1179","11":"<s_MULTIP>","_rn_":"110"},{"1":"SE","2":"Sweden","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"450581.582","8":"9696110","9":"82.25366","10":"44167.6319","11":"<s_MULTIP>","_rn_":"111"},{"1":"BY","2":"Belarus","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"208969.830","8":"9474511","9":"72.97073","10":"17944.2098","11":"<s_MULTIP>","_rn_":"112"},{"1":"UA","2":"Ukraine","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"572548.984","8":"45271947","9":"71.18659","10":"8243.4735","11":"<s_MULTIP>","_rn_":"113"},{"1":"PL","2":"Poland","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"310402.333","8":"38011735","9":"77.60244","10":"24347.0737","11":"<s_MULTIP>","_rn_":"114"},{"1":"AT","2":"Austria","3":"Europe","4":"Europe","5":"Western Europe","6":"Sovereign country","7":"85064.895","8":"8546356","9":"81.49024","10":"44320.5020","11":"<s_MULTIP>","_rn_":"115"},{"1":"HU","2":"Hungary","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"92476.460","8":"9866468","9":"75.76341","10":"24161.4255","11":"<s_MULTIP>","_rn_":"116"},{"1":"MD","2":"Moldova","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"32320.392","8":"3556397","9":"71.25800","10":"4762.7809","11":"<s_MULTIP>","_rn_":"117"},{"1":"RO","2":"Romania","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"238356.297","8":"19908979","9":"74.96098","10":"19677.5203","11":"<s_MULTIP>","_rn_":"118"},{"1":"LT","2":"Lithuania","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"63831.091","8":"2932367","9":"74.51707","10":"26258.2101","11":"<s_MULTIP>","_rn_":"119"},{"1":"LV","2":"Latvia","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"63923.533","8":"1993782","9":"74.12439","10":"22172.2535","11":"<s_MULTIP>","_rn_":"120"},{"1":"EE","2":"Estonia","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"44678.197","8":"1314545","9":"77.03415","10":"27113.6859","11":"<s_MULTIP>","_rn_":"121"},{"1":"DE","2":"Germany","3":"Europe","4":"Europe","5":"Western Europe","6":"Sovereign country","7":"357430.341","8":"80982500","9":"81.09024","10":"43560.6192","11":"<s_MULTIP>","_rn_":"122"},{"1":"BG","2":"Bulgaria","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"110216.875","8":"7223938","9":"74.46585","10":"16302.3206","11":"<s_MULTIP>","_rn_":"123"},{"1":"GR","2":"Greece","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"131964.647","8":"10892413","9":"81.38537","10":"24081.6305","11":"<s_MULTIP>","_rn_":"124"},{"1":"TR","2":"Turkey","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"798849.164","8":"77030628","9":"75.23900","10":"22401.8804","11":"<s_MULTIP>","_rn_":"125"},{"1":"AL","2":"Albania","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"29694.800","8":"2889104","9":"77.96300","10":"10701.1208","11":"<s_MULTIP>","_rn_":"126"},{"1":"HR","2":"Croatia","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"57530.852","8":"4238389","9":"77.47805","10":"20334.4465","11":"<s_MULTIP>","_rn_":"127"},{"1":"CH","2":"Switzerland","3":"Europe","4":"Europe","5":"Western Europe","6":"Sovereign country","7":"46185.251","8":"8188649","9":"83.19756","10":"57218.0279","11":"<s_MULTIP>","_rn_":"128"},{"1":"LU","2":"Luxembourg","3":"Europe","4":"Europe","5":"Western Europe","6":"Sovereign country","7":"2416.870","8":"556319","9":"82.22927","10":"93655.3342","11":"<s_MULTIP>","_rn_":"129"},{"1":"BE","2":"Belgium","3":"Europe","4":"Europe","5":"Western Europe","6":"Sovereign country","7":"30126.038","8":"11209057","9":"81.28780","10":"41360.3956","11":"<s_MULTIP>","_rn_":"130"},{"1":"NL","2":"Netherlands","3":"Europe","4":"Europe","5":"Western Europe","6":"Country","7":"40024.104","8":"16865008","9":"81.70732","10":"45668.4415","11":"<s_MULTIP>","_rn_":"131"},{"1":"PT","2":"Portugal","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"93408.594","8":"10401062","9":"81.12195","10":"26023.6978","11":"<s_MULTIP>","_rn_":"132"},{"1":"ES","2":"Spain","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"502306.468","8":"46480882","9":"83.22927","10":"31195.4052","11":"<s_MULTIP>","_rn_":"133"},{"1":"IE","2":"Ireland","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"58457.513","8":"4657740","9":"81.34878","10":"48898.3287","11":"<s_MULTIP>","_rn_":"134"},{"1":"NC","2":"New Caledonia","3":"Oceania","4":"Oceania","5":"Melanesia","6":"Dependency","7":"23219.012","8":"268050","9":"77.25287","10":"NA","11":"<s_MULTIP>","_rn_":"135"},{"1":"SB","2":"Solomon Islands","3":"Oceania","4":"Oceania","5":"Melanesia","6":"Sovereign country","7":"24728.114","8":"575504","9":"70.11300","10":"2139.5607","11":"<s_MULTIP>","_rn_":"136"},{"1":"NZ","2":"New Zealand","3":"Oceania","4":"Oceania","5":"Australia and New Zealand","6":"Country","7":"277627.605","8":"4509700","9":"81.40488","10":"34455.3312","11":"<s_MULTIP>","_rn_":"137"},{"1":"AU","2":"Australia","3":"Oceania","4":"Oceania","5":"Australia and New Zealand","6":"Country","7":"7687613.843","8":"23504138","9":"82.30000","10":"43547.1975","11":"<s_MULTIP>","_rn_":"138"},{"1":"LK","2":"Sri Lanka","3":"Asia","4":"Asia","5":"Southern Asia","6":"Sovereign country","7":"65370.390","8":"20771000","9":"74.90600","10":"10650.3902","11":"<s_MULTIP>","_rn_":"139"},{"1":"CN","2":"China","3":"Asia","4":"Asia","5":"Eastern Asia","6":"Country","7":"9409830.493","8":"1364270000","9":"75.93200","10":"12758.6478","11":"<s_MULTIP>","_rn_":"140"},{"1":"TW","2":"Taiwan","3":"Asia","4":"Asia","5":"Eastern Asia","6":"Sovereign country","7":"34345.701","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"141"},{"1":"IT","2":"Italy","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"315104.851","8":"60789140","9":"83.09024","10":"33945.8439","11":"<s_MULTIP>","_rn_":"142"},{"1":"DK","2":"Denmark","3":"Europe","4":"Europe","5":"Northern Europe","6":"Country","7":"42759.928","8":"5643475","9":"80.70000","10":"45057.0742","11":"<s_MULTIP>","_rn_":"143"},{"1":"GB","2":"United Kingdom","3":"Europe","4":"Europe","5":"Northern Europe","6":"Country","7":"249986.395","8":"64613160","9":"81.30488","10":"38251.7925","11":"<s_MULTIP>","_rn_":"144"},{"1":"IS","2":"Iceland","3":"Europe","4":"Europe","5":"Northern Europe","6":"Sovereign country","7":"107735.721","8":"327386","9":"82.86098","10":"41701.1373","11":"<s_MULTIP>","_rn_":"145"},{"1":"AZ","2":"Azerbaijan","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"91113.254","8":"9535079","9":"71.80000","10":"16715.1055","11":"<s_MULTIP>","_rn_":"146"},{"1":"GE","2":"Georgia","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"69048.161","8":"3727000","9":"72.95100","10":"8749.1562","11":"<s_MULTIP>","_rn_":"147"},{"1":"PH","2":"Philippines","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"292256.939","8":"100102249","9":"68.81300","10":"6585.8959","11":"<s_MULTIP>","_rn_":"148"},{"1":"MY","2":"Malaysia","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"338226.487","8":"30228017","9":"74.97600","10":"24194.6339","11":"<s_MULTIP>","_rn_":"149"},{"1":"BN","2":"Brunei Darussalam","3":"Asia","4":"Asia","5":"South-Eastern Asia","6":"Sovereign country","7":"10700.334","8":"411704","9":"76.91700","10":"76089.2866","11":"<s_MULTIP>","_rn_":"150"},{"1":"SI","2":"Slovenia","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"19118.123","8":"2061980","9":"81.07805","10":"28417.6564","11":"<s_MULTIP>","_rn_":"151"},{"1":"FI","2":"Finland","3":"Europe","4":"Europe","5":"Northern Europe","6":"Country","7":"341242.339","8":"5461512","9":"81.18049","10":"39017.5372","11":"<s_MULTIP>","_rn_":"152"},{"1":"SK","2":"Slovakia","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"47068.082","8":"5418649","9":"76.81220","10":"27285.2847","11":"<s_MULTIP>","_rn_":"153"},{"1":"CZ","2":"Czech Republic","3":"Europe","4":"Europe","5":"Eastern Europe","6":"Sovereign country","7":"81207.603","8":"10525347","9":"78.82439","10":"29119.6166","11":"<s_MULTIP>","_rn_":"154"},{"1":"ER","2":"Eritrea","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"119319.585","8":"NA","9":"64.17400","10":"NA","11":"<s_MULTIP>","_rn_":"155"},{"1":"JP","2":"Japan","3":"Asia","4":"Asia","5":"Eastern Asia","6":"Sovereign country","7":"404619.933","8":"127276000","9":"83.58780","10":"37337.3174","11":"<s_MULTIP>","_rn_":"156"},{"1":"PY","2":"Paraguay","3":"South America","4":"Americas","5":"South America","6":"Sovereign country","7":"401335.916","8":"6552584","9":"72.91300","10":"8501.5435","11":"<s_MULTIP>","_rn_":"157"},{"1":"YE","2":"Yemen","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"455915.007","8":"26246327","9":"64.52300","10":"3766.8053","11":"<s_MULTIP>","_rn_":"158"},{"1":"SA","2":"Saudi Arabia","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"1920324.146","8":"30776722","9":"74.23400","10":"49958.4433","11":"<s_MULTIP>","_rn_":"159"},{"1":"AQ","2":"Antarctica","3":"Antarctica","4":"Antarctica","5":"Antarctica","6":"Indeterminate","7":"12335956.076","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"160"},{"1":"NA","2":"Northern Cyprus","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"3786.365","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"161"},{"1":"CY","2":"Cyprus","3":"Asia","4":"Asia","5":"Western Asia","6":"Sovereign country","7":"6207.006","8":"1152309","9":"80.17300","10":"29786.3657","11":"<s_MULTIP>","_rn_":"162"},{"1":"MA","2":"Morocco","3":"Africa","4":"Africa","5":"Northern Africa","6":"Sovereign country","7":"591718.989","8":"34318082","9":"75.30900","10":"7078.8815","11":"<s_MULTIP>","_rn_":"163"},{"1":"EG","2":"Egypt","3":"Africa","4":"Africa","5":"Northern Africa","6":"Sovereign country","7":"996311.623","8":"91812566","9":"71.12000","10":"9879.7994","11":"<s_MULTIP>","_rn_":"164"},{"1":"LY","2":"Libya","3":"Africa","4":"Africa","5":"Northern Africa","6":"Sovereign country","7":"1633720.717","8":"6204108","9":"71.65900","10":"16371.9022","11":"<s_MULTIP>","_rn_":"165"},{"1":"ET","2":"Ethiopia","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"1132393.167","8":"97366774","9":"64.53500","10":"1424.5270","11":"<s_MULTIP>","_rn_":"166"},{"1":"DJ","2":"Djibouti","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"21880.251","8":"912164","9":"62.00600","10":"NA","11":"<s_MULTIP>","_rn_":"167"},{"1":"NA","2":"Somaliland","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Indeterminate","7":"167349.613","8":"NA","9":"NA","10":"NA","11":"<s_MULTIP>","_rn_":"168"},{"1":"UG","2":"Uganda","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"245768.479","8":"38833338","9":"59.22400","10":"1637.2751","11":"<s_MULTIP>","_rn_":"169"},{"1":"RW","2":"Rwanda","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"23365.411","8":"11345357","9":"66.18800","10":"1629.8689","11":"<s_MULTIP>","_rn_":"170"},{"1":"BA","2":"Bosnia and Herzegovina","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"50605.075","8":"3566002","9":"76.56100","10":"10516.7864","11":"<s_MULTIP>","_rn_":"171"},{"1":"MK","2":"Macedonia","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"25062.255","8":"2077495","9":"75.38400","10":"12298.4902","11":"<s_MULTIP>","_rn_":"172"},{"1":"RS","2":"Serbia","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"76388.605","8":"7130576","9":"75.33659","10":"13112.9090","11":"<s_MULTIP>","_rn_":"173"},{"1":"ME","2":"Montenegro","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"13443.678","8":"621810","9":"76.71200","10":"14796.6354","11":"<s_MULTIP>","_rn_":"174"},{"1":"XK","2":"Kosovo","3":"Europe","4":"Europe","5":"Southern Europe","6":"Sovereign country","7":"11230.262","8":"1821800","9":"71.09756","10":"8698.2916","11":"<s_MULTIP>","_rn_":"175"},{"1":"TT","2":"Trinidad and Tobago","3":"North America","4":"Americas","5":"Caribbean","6":"Sovereign country","7":"7737.810","8":"1354493","9":"70.42600","10":"31181.8212","11":"<s_MULTIP>","_rn_":"176"},{"1":"SS","2":"South Sudan","3":"Africa","4":"Africa","5":"Eastern Africa","6":"Sovereign country","7":"624909.099","8":"11530971","9":"55.81700","10":"1935.8794","11":"<s_MULTIP>","_rn_":"177"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="raster" class="section level2">
+<h2>Raster</h2>
+<p>A different type of spatial data is called raster. Raster data differ from vector data as they are not associated to sets of latitudinal and longitudinal values, but they rather encompass a geographic area and divide that area in cells of user-defined size (i.e, a raster’s resolution). To each cell is then assigned a valued dependent on the characteristic of interest. Raster can be used to represent continuous and/or categorical variables.</p>
+<div class="figure">
+<img src="lesson_1_files/figure-html/raster_1-1.png" alt="**Figure 11:** Elevation (continuous variable) raster of Wolf Volcano, Isabela Island, Galápagos." width="672" />
+<p class="caption">
+<strong>Figure 11:</strong> Elevation (continuous variable) raster of Wolf Volcano, Isabela Island, Galápagos.
+</p>
+</div>
+<div class="figure">
+<img src="lesson_1_files/figure-html/raster_2-1.png" alt="**Figure 12:** Land use (categorical variable) on a a patch of land (these data have been randomly generated)." width="672" />
+<p class="caption">
+<strong>Figure 12:</strong> Land use (categorical variable) on a a patch of land (these data have been randomly generated).
+</p>
+</div>
+</div>
+<div id="crs" class="section level2">
+<h2>CRS</h2>
+</div>
+</div>
+<div id="litterature-to-read" class="section level1">
+<h1>Litterature to read</h1>
+<p>The first paper to read for the next time we meet (i.e., 2022-04-15) was written by Cagnacci and colleagues in 2010 <span class="citation">[<a href="#ref-Cagnacci2010" role="doc-biblioref">7</a>]</span>.</p>
+</div>
+<div id="reference" class="section level1 unnumbered">
+<h1 class="unnumbered">Reference</h1>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Costa2015" class="csl-entry">
+1. Costa H, Foody G, Jiménez S, Silva L. Impacts of species misidentification on species distribution modeling with presence-only data. <span>ISPRS</span> International Journal of Geo-Information. 2015;4:2496–518. doi:<a href="https://doi.org/10.3390/ijgi4042496">10.3390/ijgi4042496</a>.
+</div>
+<div id="ref-Guisan2000" class="csl-entry">
+2. Guisan A, Zimmermann NE. Predictive habitat distribution models in ecology. Ecological Modelling. 2000;135:147–86. doi:<a href="https://doi.org/10.1016/S0304-3800(00)00354-9">https://doi.org/10.1016/S0304-3800(00)00354-9</a>.
+</div>
+<div id="ref-Pebesma2018" class="csl-entry">
+3. Pebesma E. <span class="nocase">Simple Features for R: Standardized Support for Spatial Vector Data</span>. <span>The R Journal</span>. 2018;10:439–46. doi:<a href="https://doi.org/10.32614/RJ-2018-009">10.32614/RJ-2018-009</a>.
+</div>
+<div id="ref-Pebesma2005" class="csl-entry">
+4. Pebesma EJ, Bivand RS. Classes and methods for spatial data in <span>R</span>. R News. 2005;5:9–13. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.
+</div>
+<div id="ref-Bivand2021" class="csl-entry">
+5. Bivand R, Rundel C. Rgeos: Interface to geometry engine - open source (’GEOS’). 2021. <a href="https://CRAN.R-project.org/package=rgeos">https://CRAN.R-project.org/package=rgeos</a>.
+</div>
+<div id="ref-Bivand2021b" class="csl-entry">
+6. Bivand R, Keitt T, Rowlingson B. Rgdal: Bindings for the ’geospatial’ data abstraction library. 2021. <a href="https://CRAN.R-project.org/package=rgdal">https://CRAN.R-project.org/package=rgdal</a>.
+</div>
+<div id="ref-Cagnacci2010" class="csl-entry">
+7. Cagnacci F, Boitani L, Powell RA, Boyce MS. <span class="nocase">Animal ecology meets GPS-based radiotelemetry: a perfect storm of opportunities and challenges</span>. Philosophical Transactions of the Royal Society B: Biological Sciences. 2010;365:2157–62. doi:<a href="https://doi.org/10.1098/rstb.2010.0107">10.1098/rstb.2010.0107</a>.
+</div>
+</div>
+</div>
+
+<div class="footer">
+      <p>Made with Love in R. Copyright &copy; 2022 by Giuliano Colosimo. All rights reserved.</p> 
+</div>
 
 
-<p>Copyright &copy; 2022 Giuliano Colosimo. All rights reserved.</p>
-
-
+</div>
+</div>
 
 </div>
 
@@ -330,6 +636,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

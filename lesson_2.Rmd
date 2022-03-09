@@ -1,0 +1,44 @@
+---
+title: "Lesson 2"
+author: "Giuliano Colosimo, PhD"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+---
+
+## Movebank
+
+Movebank is a free, online database of animal tracking data hosted by the Max Planck Institute of Animal Behavior. The aim of this website is to help animal tracking researchers to manage, share, protect, analyze and archive their data (this is sentence is adapted from the Movebank website. I figured there was no need to re-invent the wheel here).
+
+- Visit [www.movebank.org](www.movebank.org) and create a free account. 
+
+- Open RStudio. Type the following.
+
+```{r eval = FALSE, include = T}
+install.packages("move")
+```
+
+The command should start the download procedure for the R-package **move**[]
+
+```{r eval = FALSE, include = T}
+trying URL 'https://cran.mirror.garr.it/CRAN/bin/macosx/big-sur-arm64/contrib/4.1/move_4.1.6.tgz'
+Content type 'application/octet-stream' length 3253094 bytes (3.1 MB)
+==================================================
+  downloaded 3.1 MB
+
+
+The downloaded binary packages are in
+/var/folders/qq/s6rqwgl11cb4lxxs6vgbbl4h0000gn/T//RtmpBchVIJ/downloaded_packages
+```
+
+
+**NOTE**: Agreement to license terms: to be able to download data from a study on Movebank in R, you might first have to accept the license terms for the study. For this go to [www.movebank.org](www.movebank.org), search for your study of interest, click on the download tab, and accept the license terms. This only has to be done once per study.
+
+
+# Telemetry
+
+# GPS
+
+# Remote sensing

@@ -1,3 +1,50 @@
+body {
+  font-size: 16pt;
+}
+
+
 blockquote {
   font-style: italic
+}
+
+h1 {
+  color: blue;
+  font-weight: bold;
+}
+
+h2 {
+  color: green;
+  font-weight: bold;
+}
+
+h3 {
+  color: red;
+  font-weight: bold;
+}
+
+.title {
+  color: black;
+}
+
+.author {
+  color: purple;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* Height of the footer*/ 
+  height: 25px;
+  background: #222222;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  color:white;
+}
+
+.footer p {
+  text-align: right;
 }
