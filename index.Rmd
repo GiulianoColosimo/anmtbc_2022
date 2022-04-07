@@ -22,15 +22,15 @@ Welcome to class! These web-pages contain all the information you need to accomp
 
 ![](./figures/0_1_myself.png)
 
-1. I am researcher working @ University of Rome "Tor Vergata" and I am interested in using ecological and molecular tools to inform conservation actions
-2. I was a PostDoc for 5 years with the San Diego Zoo Wildlife Association
-3. I got a PhD in Conservation Genetics @ Mississippi State University
-4. I have been working in conservation since 2010
-5. I got my bachelor and master degree @ University of Rome "Tor Vergata"
+- I am researcher working @ University of Rome "Tor Vergata" and I am interested in using ecological and molecular tools to inform conservation actions
+- I was a PostDoc for 5 years with the San Diego Zoo Wildlife Association
+- I got a PhD in Conservation Genetics @ Mississippi State University
+- I have been doing research in Conservation Biology since 2010
+- I got my bachelor and master degree @ University of Rome "Tor Vergata"
 
 ## Course info
 
-This is an discretionary course for master level students enrolled in the "Biologia Evoluzionistica, Ecologia e Antropologia Applicata" degree. It is worth **2 CFU** for a total of 16 hours to be administered in person (or remotely, depending on the evolution of the pandemic) over 8 weeks. 
+This is an discretionary course for master level students enrolled in the "Biologia Evoluzionistica, Ecologia e Antropologia Applicata" degree at the University of Rome Tor Vergata. It is worth **2 CFU** for a total of 16 hours to be administered in person (or remotely, depending on the evolution of the pandemic) over 8 weeks. 
 
 All information related to this course (including last minute changes and updates of the material) will be available on this website.
 
@@ -70,7 +70,7 @@ dates <- seq(as.Date("2022-04-01"), as.Date("2022-04-30"), by = "1 day")
 # (with the week starting on Monday)
 events <- ifelse(format(dates, "%w") %in% c(6, 0), "Weekend", NA)
 
-events[c(8, 15, 22, 29)] <- "Classes"
+events[c(8, 12, 15, 19, 22, 26, 29)] <- "Classes"
 
 calendR(year = 2022, 
         month = 4, 
@@ -82,8 +82,9 @@ calendR(year = 2022,
         low.col = "white",
         legend.pos = "bottom", # Legend position
         legend.title = "",
-        text = c("10:00-12:00"),             
-        text.pos = c(8, 15, 22, 29),        
+        text = c("10:00-12:00", "16:00-18:00", "10:00-12:00", "16:00-18:00",
+                 "10:00-12:00", "16:00-18:00", "10:00-12:00"),             
+        text.pos = c(8, 12, 15, 19, 22, 26, 29),        
         text.size = 3.5,              
         text.col = "black")
 ```
@@ -96,7 +97,9 @@ dates <- seq(as.Date("2022-05-01"), as.Date("2022-05-31"), by = "1 day")
 # (with the week starting on Monday)
 events <- ifelse(format(dates, "%w") %in% c(6, 0), "Weekend", NA)
 
-events[c(6, 13, 20, 27)] <- "Classes"
+events[c(3,6)] <- c("Classes","Exam")
+
+
 
 calendR(year = 2022, 
         month = 5, 
@@ -104,17 +107,17 @@ calendR(year = 2022,
         title = "",
         subtitle = "May 2022",
         special.days = events,
-        special.col = c("#00AAAE", "gray"),
+        special.col = c("#00AAAE", "Red", "gray"),
         low.col = "white",
         legend.pos = "bottom", # Legend position
         legend.title = "",
-        text = c("10:00-12:00"),             
-        text.pos = c(6, 13, 20, 27),        
+        text = c("16:00-18:00", "10:00-12:00"),             
+        text.pos = c(3,6),        
         text.size = 3.5,              
         text.col = "black")
 ```
 
-```{r calendar_3, echo=FALSE}
+```{r calendar_3, eval=FALSE, include=FALSE}
 # Vector of dates
 dates <- seq(as.Date("2022-06-01"), as.Date("2022-06-30"), by = "1 day")
 
@@ -142,15 +145,38 @@ calendR(year = 2022,
 
 # Content
 
-The specific content of each class will be progressively released under the *Classes* tab (look up, in the site navigation bar). Below is a list of some of the topics we will be covering during the course:
+The specific content of each class will be progressively released under the *Classes* tab (look up, in the site navigation bar). Below is a list of the topics we will be covering during the course:
 
 - Lesson 1 (April 8, 2022)
   - Opening questionnaire;
-  - cover the basics of Animal Tracking;
-  - set up your computers;
-  - get you acquainted with the most commonly used spatial data objects (vectors and rasters) and their features;
+  - the basics of Animal Tracking;
+  - setting up your computers;
+  - get you acquainted with the most commonly used spatial data objects and their features;
   - get an overview of some Coordinate Reference Systems (CRSs);
-  - exercise assignment.
+  - paper assignment.
+
+- Lesson 2 (April 15, 2022)
+  - Paper review and discussion;
+  - telemetry e GPS;
+  - making maps in R;
+  - a deeper dive in CRSs;
+  - paper assignment.
+ 
+- Lesson 3 (April 22, 2022)
+  - Paper review and discussion;
+  - class excercise;
+  - paper assignment.
+
+- Lesson 4 (April 29, 2022)
+  - Paper review and discussion;
+  - remote sensing;
+  - databases;
+  - paper assignment.
+
+- Lesson 5 (May 6, 2022)
+  - Paper review and discussion;
+  - Species Distribution Models (SDMs);
+  - paper assignment.
 
 # Students with disabilities
 Please let me know if you require special accommodations related to this class so that I can assist in this regard. 
