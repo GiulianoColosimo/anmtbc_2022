@@ -155,28 +155,13 @@ The specific content of each class will be progressively released under the *Cla
   - get an overview of some Coordinate Reference Systems (CRSs);
   - paper assignment.
 
-- Lesson 2 (April 15, 2022)
-  - Paper review and discussion;
+- Lesson 2 (April 12, 2022)
+  - paper review and discussion;
+  - CRSs;
   - telemetry e GPS;
   - making maps in R;
-  - a deeper dive in CRSs;
-  - paper assignment.
- 
-- Lesson 3 (April 22, 2022)
-  - Paper review and discussion;
-  - class excercise;
-  - paper assignment.
+  - paper assignment. 
 
-- Lesson 4 (April 29, 2022)
-  - Paper review and discussion;
-  - remote sensing;
-  - databases;
-  - paper assignment.
-
-- Lesson 5 (May 6, 2022)
-  - Paper review and discussion;
-  - Species Distribution Models (SDMs);
-  - paper assignment.
 
 # Students with disabilities
 Please let me know if you require special accommodations related to this class so that I can assist in this regard. 
