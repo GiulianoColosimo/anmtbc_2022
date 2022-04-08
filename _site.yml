@@ -6,7 +6,7 @@ navbar:
   left:
     - text: "Home"
       icon: fa-home
-      href: index.html
+      href: https://giulianocolosimo.github.io/anmtbc_2022/
     - text: "Classes"
       href: classes.html
       icon: fa-briefcase
