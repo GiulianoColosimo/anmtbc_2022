@@ -11,8 +11,8 @@ navbar:
       href: classes.html
       icon: fa-briefcase
       menu:
-        #- text: "Lesson 1"
-        #  href: ./slides/lesson_1/lesson_1.html
+        - text: "Lesson 1"
+          href: ./slides/lesson_1/lesson_1.html
         #- text: "Lesson 2"
         #  href: ./slides/lesson_2/lesson_2.html
   right: 
