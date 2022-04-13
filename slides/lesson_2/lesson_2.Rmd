@@ -13,8 +13,8 @@ output:
     fig_caption: true
     df_print: paged
     toc: true
-    toc_float: true
-    toc_depth: 4
+    lof: true
+    toc-depth: 4
 css: ../../styles2.css
 bibliography: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/comprehensive_database.bib
 csl: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/apa_5th_edition.csl
@@ -54,14 +54,6 @@ In this second lesson we will:
 - access tracking data on-line;
 - paper assignment. 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 <hr>
 
 ## A movement ecology paradigm for unifying organismal movement research [@Nathan2008]
@@ -91,7 +83,6 @@ In this second lesson we will:
 > Large datasets, made available by advanced technol- ogy, present serious problems of data management, as underlined for microarrays from genomic techniques [...], physiological and behavioural data from sensors [...], animal-borne video imagery [...], and high-resolution spatio-temporal movement data [...]. Challenges include preservation of data integrity and consistency, avoidance of data redundancy, automation of data download, filtering and storage, management of specific data types, and definition of standards for objects and formats [...].
 
 > Datasets of GPS-based locations are, essentially, time series of spatial data, usually collected with high-frequency, systematic schedules. This fact has two important consequences. First, position time series represent movement paths [...], and the higher the frequency of positions, the more trustworthy the movement paths. Trustworthiness also depends on the physiological and behavioural characteristics of the animals that affect step length [...]. Second, position time series are highly corre- lated datasets, both in time and space [...]; the higher the frequency of positions, the stronger the correlation (or autocorrelation, i.e. correlation that changes as a function of temporal or spatial distance between observations; [...]).
-
 
 # Coordinate Reference Systems (CRS)
 
@@ -316,8 +307,7 @@ library(move)
 login <- movebankLogin(username = "Giuliano", password = "2@imlL85_G")
 ```
 
-
-```{r exer_2, echo=TRUE, cache = TRUE, fig.align = 'center', fig.cap = '**Figure 14:** Basic plot of the dataset downloaded from movebank.'}
+```{r exer_2, echo=TRUE, fig.align = 'center', fig.cap = '**Figure 14:** Basic plot of the dataset downloaded from movebank.'}
 library(move)
 #login <- movebankLogin(username = "Giuliano", password = "XXXXXXXXXX")
 duck <- getMovebankData(study = "Shelduck Italy ISPRA MPIAB", login = login)
@@ -333,8 +323,7 @@ duck@bbox
 plot(duck)
 ```
 
-
-```{r exer_3, echo=TRUE, fig.align = 'center', fig.cap = '**Figure 15:** A prettier image, but still not very informative for us.', message=FALSE, cache=TRUE}
+```{r exer_3,  echo=TRUE, fig.align = 'center', fig.cap = '**Figure 15:** A prettier image, but still not very informative for us.', message=FALSE}
 library(ggmap)
 
 basemap <- get_map(location = duck@bbox, maptype = "terrain")
@@ -362,7 +351,6 @@ proj4string(duck_sp) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 
 mapview(duck_sp, legend = TRUE, zcol = "tag_id", cex = 2, lwd = 0.1, map.types = "Esri.WorldImagery")
 ```
-
 
 # Readings
 

@@ -15,7 +15,6 @@ output:
     toc: true
     lof: true
     toc-depth: 4
-    #includes:
 css: ../../styles2.css
 bibliography: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/comprehensive_database.bib
 csl: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/apa_5th_edition.csl
@@ -370,7 +369,7 @@ A coordinate reference system allows us to use coordinates to locate features on
 
 I will briefly talk about CRS here and then we will go over a few more details during next class.
 
-The example below is borrowed from [here](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/), which, by the way, is a greate resource to review some of the things we will be discussing about.
+The example below is borrowed from [here](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/), which, by the way, is a great resource to review some of the things we will be discussing about.
 
 ```{r mapLocations, echo=TRUE, fig.align='center', fig.cap="**Figure 20:** Boulder, Mallorca and Oslo as they appear when map and cities have same and appropriate CRS.", warning=FALSE, message=FALSE}
 

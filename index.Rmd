@@ -160,7 +160,17 @@ The specific content of each class will be progressively released under the *Cla
   - CRSs;
   - telemetry e GPS;
   - making maps in R;
-  - paper assignment. 
+  - databases and Movebank;
+  - paper assignment.
+
+- Lesson 3 (April 15, 2022)
+  - paper review and discussion;
+  - environmental data;
+  - estimating home ranges;
+  - species distribution models
+  - paper assignment.
+  
+- Lesson 4 (April 19, 2022)
 
 
 # Students with disabilities
