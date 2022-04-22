@@ -274,7 +274,7 @@ barplot(ex1_res$Duration_days, las = 2, names.arg = row.names(ex1_res))
 
 # Minimum Convex Polygon - MCP
 
-We calculate home range of these individuals using a classic approach: Maximum Convex Polygon.
+We calculate home range of these individuals using a classic approach: Minimum Convex Polygon.
 
 ```{r mcp_1, echo = TRUE, message = FALSE, warning = FALSE, fig.align = 'center', fig.cap = "**Figure 9:** Minimum convex polygon of tracked individuals"}
 fox_data_sp <- SpatialPointsDataFrame(fox_data[, c("lon", "lat")], data = fox_data, proj4string = crs("+proj=longlat +ellps=WGS84"))
