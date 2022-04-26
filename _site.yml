@@ -19,6 +19,9 @@ navbar:
           href: ./slides/lesson_3/lesson_3.html
         - text: "Lesson 4"
           href: ./slides/lesson_4/lesson_4.html
+        - text: "Lesson 5"
+          href: ./slides/lesson_5/lesson_5.html
+
   right: 
     - icon: fa-envelope fa-lg
       href: mailto:<giuliano.colosimo@uniroma2.it>
