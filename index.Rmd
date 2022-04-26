@@ -175,9 +175,10 @@ The specific content of each class will be progressively released under the *Cla
   - home range with AKDE;
   - paper assignment.
   
-- Lesson 5 and 1/2 (April 22, 2022)
+- Lesson 5 (April 26, 2022)
+  - corridor dweller VS corridor passers;
   - paper discussion;
-  - path selection function;
+  - Resource Selection Functions (RSFs);
   - paper assignment.
 
 # Students with disabilities
