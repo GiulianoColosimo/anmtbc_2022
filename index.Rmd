@@ -84,7 +84,7 @@ calendR(year = 2022,
         legend.title = "",
         text = c("10:00-12:00", "16:00-18:00", 
                  "14:00-16:00", "10:00-12:00",
-                 "14:00-16:00", "10:00-12:00"),             
+                 "14:00-17:00", "10:00-13:00"),             
         text.pos = c(8, 12, 19, 22, 26, 29),        
         text.size = 3.5,              
         text.col = "black")
@@ -98,7 +98,7 @@ dates <- seq(as.Date("2022-05-01"), as.Date("2022-05-31"), by = "1 day")
 # (with the week starting on Monday)
 events <- ifelse(format(dates, "%w") %in% c(6, 0), "Weekend", NA)
 
-events[c(3, 6, 10)] <- c("Classes", "Classes","Exam")
+events[c(3, 6)] <- c("Classes", "Exam")
 
 calendR(year = 2022, 
         month = 5, 
@@ -110,8 +110,8 @@ calendR(year = 2022,
         low.col = "white",
         legend.pos = "bottom", # Legend position
         legend.title = "",
-        text = c("14:00-16:00", "10:00-12:00", "14:00-16:00"),             
-        text.pos = c(3, 6, 10),        
+        text = c("14:00-16:00", "10:00-12:00"),             
+        text.pos = c(3, 6),        
         text.size = 3.5,              
         text.col = "black")
 ```
@@ -175,6 +175,11 @@ The specific content of each class will be progressively released under the *Cla
   - home range with AKDE;
   - paper assignment.
   
+- Lesson 5 and 1/2 (April 22, 2022)
+  - paper discussion;
+  - path selection function;
+  - paper assignment.
+
 # Students with disabilities
 Please let me know if you require special accommodations related to this class so that I can assist in this regard. 
 
