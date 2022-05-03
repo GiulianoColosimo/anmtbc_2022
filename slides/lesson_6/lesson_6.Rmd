@@ -1,0 +1,38 @@
+---
+title: "Animal Tracking nella Biologia della Conservazione"
+subtitle: "Lesson 6"
+author: "Giuliano Colosimo, PhD"
+date: 2022-04-29
+output:
+  slidy_presentation:
+    highlight: pygments
+    footer: "Copyright (c) 2022, Giuliano Colosimo." 
+    #duration: 90
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    df_print: paged
+    toc: true
+    lof: true
+    toc-depth: 4
+css: ../../styles2.css
+bibliography: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/comprehensive_database.bib
+csl: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/apa_5th_edition.csl
+citation_package: biblatex
+citecolor: "red"
+---
+# Recap
+
+Previously we:
+
+- corridor dweller VS corridor passers;
+- Resource Selection Functions (RSFs);
+
+To navigate back to the course home page click [here!](https://giulianocolosimo.github.io/anmtbc_2022/)
+
+# Overview
+
+In this class I will be giving a seminar titled "Bridging the gap between theoretical and applied conservation".
+
+The presented material of this class will not be available to the students due to the sensitivity of some of the data presented.
+

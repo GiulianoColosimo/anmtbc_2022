@@ -21,6 +21,10 @@ navbar:
           href: ./slides/lesson_4/lesson_4.html
         - text: "Lesson 5"
           href: ./slides/lesson_5/lesson_5.html
+        - text: "Lesson 6"
+          href: ./slides/lesson_6/lesson_6.html
+        - text: "Lesson 7"
+          href: ./slides/lesson_7/lesson_7.html
 
   right: 
     - icon: fa-envelope fa-lg

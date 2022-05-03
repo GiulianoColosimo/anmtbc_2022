@@ -1,0 +1,42 @@
+---
+title: "Animal Tracking nella Biologia della Conservazione"
+subtitle: "Lesson 7"
+author: "Giuliano Colosimo, PhD"
+date: 2022-05-03
+output:
+  slidy_presentation:
+    highlight: pygments
+    footer: "Copyright (c) 2022, Giuliano Colosimo." 
+    #duration: 90
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    df_print: paged
+    toc: true
+    lof: true
+    toc-depth: 4
+css: ../../styles2.css
+bibliography: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/comprehensive_database.bib
+csl: /Users/giulianocolosimo/Dropbox/manuscripts/literature/bibtex/apa_5th_edition.csl
+citation_package: biblatex
+citecolor: "red"
+---
+
+# Recap
+
+Previously we:
+
+- seminar: "Bridging the gap between theoretical and applied conservation"
+
+To navigate back to the course home page click [here!](https://giulianocolosimo.github.io/anmtbc_2022/)
+
+# Overview
+
+- final questionnaire;
+- final review of material covered.
+
+Open your computers and navigate to: 
+
+<center> https://forms.gle/fYX9FGoa9xQBfbG59 </center>
+
+Complete the on-line questionnaire. Please, try to be as exhaustive as possible, as the information you provide will help me to better adjust the class for your colleagues next year.
